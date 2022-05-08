@@ -36,8 +36,10 @@ fun BarPlot(modifier: Modifier = Modifier) {
         }
 
         layout(constraints.maxWidth, constraints.maxHeight) {
+            var xOffset = 0
             placeables.forEach {
-                it.place(0, 0)
+                it.place(xOffset, 0)
+                xOffset += constraints.maxWidth / barCount
             }
         }
     }
