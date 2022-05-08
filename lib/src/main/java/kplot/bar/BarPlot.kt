@@ -14,9 +14,9 @@ fun BarPlot(modifier: Modifier = Modifier) {
     Layout(
         modifier = Modifier,
         content = {
-            Bar()
-            Bar()
-            Bar()
+            repeat(1) {
+                Bar()
+            }
         }
     ) {
         measurables, constraints ->
