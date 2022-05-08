@@ -22,8 +22,8 @@ fun BarPlot(modifier: Modifier = Modifier) {
         measurables, constraints ->
 
         val barCount = measurables.size
-        val barMinThicknessPercentage = 0.05
-        val barMaxThicknessPercentage = 0.2
+        val barMinThicknessPercentage = 0.01
+        val barMaxThicknessPercentage = 0.1
         val placeables = measurables.map {
             it.measure(
                 Constraints(
