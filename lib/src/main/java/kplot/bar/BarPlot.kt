@@ -9,6 +9,7 @@ import androidx.compose.ui.unit.Constraints
 /**
  * A compose function that plots [Bar]s
  */
+@Suppress("MagicNumber")
 @Composable
 fun BarPlot(modifier: Modifier = Modifier) {
     Layout(
