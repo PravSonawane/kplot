@@ -18,17 +18,16 @@ fun BarPlot(modifier: Modifier = Modifier) {
                 Bar()
             }
         }
-    ) {
-        measurables, constraints ->
+    ) { measurables, constraints ->
 
         val barCount = measurables.size
         val barMinThicknessPercentage = 0.01
-        val barMaxThicknessPercentage = 0.1
+        val barMaxThicknessPercentage = 0.05
         val placeables = measurables.map {
             it.measure(
                 Constraints(
-                    minWidth = ((constraints.minWidth / barCount) * barMinThicknessPercentage).toInt(),
-                    maxWidth = ((constraints.maxWidth / barCount) * barMaxThicknessPercentage).toInt(),
+                    minWidth = (constraints.minWidth * barMinThicknessPercentage).toInt(),
+                    maxWidth = (constraints.maxWidth * barMaxThicknessPercentage).toInt(),
                     minHeight = constraints.minHeight,
                     maxHeight = constraints.maxHeight
                 )
@@ -39,7 +38,7 @@ fun BarPlot(modifier: Modifier = Modifier) {
             var xOffset = 0
             placeables.forEach {
                 val itemWidth = it.width / 2
-                xOffset += constraints.maxWidth / (barCount+1)
+                xOffset += constraints.maxWidth / (barCount + 1)
                 it.place(xOffset - itemWidth, 0)
             }
         }
