@@ -14,7 +14,7 @@ fun BarPlot(modifier: Modifier = Modifier) {
     Layout(
         modifier = Modifier,
         content = {
-            repeat(1) {
+            repeat(5) {
                 Bar()
             }
         }
@@ -38,8 +38,9 @@ fun BarPlot(modifier: Modifier = Modifier) {
         layout(constraints.maxWidth, constraints.maxHeight) {
             var xOffset = 0
             placeables.forEach {
-                it.place(xOffset, 0)
-                xOffset += constraints.maxWidth / barCount
+                val itemWidth = it.width / 2
+                xOffset += constraints.maxWidth / (barCount+1)
+                it.place(xOffset - itemWidth, 0)
             }
         }
     }
