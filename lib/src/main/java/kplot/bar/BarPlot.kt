@@ -24,8 +24,8 @@ fun BarPlot(barPlotData: BarPlotData, modifier: Modifier = Modifier) {
     ) { measurables, constraints ->
 
         val barCount = measurables.size
-        val barMinThicknessPercentage = 0.01
-        val barMaxThicknessPercentage = 0.05
+        val barMinThicknessPercentage = 0.125
+        val barMaxThicknessPercentage = 0.15
         val placeables = measurables.mapIndexed { i, p ->
             p.measure(
                 Constraints(
@@ -38,15 +38,20 @@ fun BarPlot(barPlotData: BarPlotData, modifier: Modifier = Modifier) {
         }
 
         layout(constraints.maxWidth, constraints.maxHeight) {
+            val divider = if(barCount == 1) 1 else barCount - 1
+            // x coordinate where item needs to be placed
             var x = 0
-            placeables.forEach {
-                // mid point of the item width
-                val itemWidthMid = it.width / 2
+            placeables.forEachIndexed { i, p ->
                 // y coordinate where item needs to be placed
-                val y = constraints.maxHeight - it.height
+                val y = constraints.maxHeight - p.height
 
-                x += constraints.maxWidth / (barCount + 1)
-                it.place(x - itemWidthMid, y)
+                val itemWidthOffset = (p.width * (i.toFloat()/ divider)).toInt()
+
+                // the x & y coordinates are the top left corner of the item
+                // item width is subtracted from x coordinate to left shift and fit the items
+                p.place(x - itemWidthOffset, y)
+
+                x += constraints.maxWidth / divider
             }
         }
     }
@@ -56,6 +61,6 @@ fun BarPlot(barPlotData: BarPlotData, modifier: Modifier = Modifier) {
 @Composable
 fun BarPlotPreview() {
     BarPlot(
-        barPlotData = BarPlotData(floatArrayOf(1f, 7f, 2f))
+        barPlotData = BarPlotData(floatArrayOf(1f, 4f, 2f, 5f))
     )
 }
