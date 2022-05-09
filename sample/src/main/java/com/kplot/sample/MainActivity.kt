@@ -8,6 +8,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.kplot.plot.TestLibComposable
 import com.kplot.sample.ui.theme.KplotTheme
+import kplot.bar.BarPlot
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +18,7 @@ class MainActivity : ComponentActivity() {
                 Column {
                     TestSampleComposable()
                     TestLibComposable()
+                    BarPlot()
                 }
             }
         }
