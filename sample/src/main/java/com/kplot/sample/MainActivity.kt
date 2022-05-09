@@ -7,8 +7,10 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import com.kplot.plot.TestLibComposable
+import com.kplot.sample.MainActivity.Companion.data
 import com.kplot.sample.ui.theme.KplotTheme
 import kplot.bar.BarPlot
+import kplot.data.BarPlotData
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,14 +20,19 @@ class MainActivity : ComponentActivity() {
                 Column {
                     TestSampleComposable()
                     TestLibComposable()
-                    BarPlot()
+                    BarPlot(data)
                 }
             }
         }
+    }
+
+    companion object {
+        val data = BarPlotData(floatArrayOf(4f,2f,3f,2f))
     }
 }
 
 @Composable
 fun TestSampleComposable() {
     Text("Hello kplot sample Composable")
+    BarPlot(data)
 }
