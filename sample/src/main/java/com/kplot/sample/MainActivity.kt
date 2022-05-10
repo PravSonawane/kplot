@@ -6,7 +6,6 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import com.kplot.plot.TestLibComposable
 import com.kplot.sample.MainActivity.Companion.data
 import com.kplot.sample.ui.theme.KplotTheme
 import kplot.bar.BarPlot
@@ -19,7 +18,6 @@ class MainActivity : ComponentActivity() {
             KplotTheme {
                 Column {
                     TestSampleComposable()
-                    TestLibComposable()
                     BarPlot(data)
                 }
             }
