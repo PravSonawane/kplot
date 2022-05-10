@@ -38,14 +38,14 @@ fun BarPlot(barPlotData: BarPlotData, modifier: Modifier = Modifier) {
         }
 
         layout(constraints.maxWidth, constraints.maxHeight) {
-            val divider = if(barCount == 1) 1 else barCount - 1
+            val divider = if (barCount == 1) 1 else barCount - 1
             // x coordinate where item needs to be placed
             var x = 0
             placeables.forEachIndexed { i, p ->
                 // y coordinate where item needs to be placed
                 val y = constraints.maxHeight - p.height
 
-                val itemWidthOffset = (p.width * (i.toFloat()/ divider)).toInt()
+                val itemWidthOffset = (p.width * (i.toFloat() / divider)).toInt()
 
                 // the x & y coordinates are the top left corner of the item
                 // item width is subtracted from x coordinate to left shift and fit the items
