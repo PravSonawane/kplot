@@ -1,6 +1,7 @@
 package kplot.bar
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.MeasureResult
@@ -22,7 +23,7 @@ fun BarPlot(
     barPlotStyle: BarPlotStyle = BarPlotStyle.SPREAD,
     barPlotJustification: BarPlotJustification = BarPlotJustification.START
 ) {
-    val maxData = data.maxOrNull() ?: 1f
+    val maxData = remember { data.maxOrNull() ?: 1f }
     Layout(
         modifier = modifier,
         content = {
