@@ -40,7 +40,7 @@ fun BarPlot(
                 Constraints(
                     minWidth = (constraints.minWidth * barMinThicknessPercentage).toInt(),
                     maxWidth = (constraints.maxWidth * barMaxThicknessPercentage).toInt(),
-                    minHeight = constraints.minHeight,
+                    minHeight = (constraints.maxHeight * (data[i] / maxData)).toInt(),
                     maxHeight = (constraints.maxHeight * (data[i] / maxData)).toInt()
                 )
             )
