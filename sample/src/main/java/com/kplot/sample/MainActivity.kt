@@ -40,7 +40,7 @@ fun TestSampleComposable() {
                 .fillMaxWidth()
                 .height(160.dp)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-            elevation = 4.dp) {
+            elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
                     barPlotStyle = BarPlotStyle.PACKED,
@@ -53,7 +53,7 @@ fun TestSampleComposable() {
                 .fillMaxWidth()
                 .height(160.dp)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 4.dp) {
+                elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
                     barPlotStyle = BarPlotStyle.PACKED,
@@ -66,7 +66,7 @@ fun TestSampleComposable() {
                 .fillMaxWidth()
                 .height(160.dp)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 4.dp) {
+                elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
                     barPlotStyle = BarPlotStyle.PACKED,
@@ -79,7 +79,7 @@ fun TestSampleComposable() {
                 .fillMaxWidth()
                 .height(160.dp)
                 .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 4.dp) {
+                elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
                     barPlotStyle = BarPlotStyle.SPREAD)
