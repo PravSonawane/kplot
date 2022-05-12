@@ -15,6 +15,7 @@ import com.kplot.sample.ui.theme.KplotTheme
 import kplot.bar.BarPlot
 import kplot.barplot.BarPlotJustification
 import kplot.barplot.BarPlotStyle
+import kplot.line.LinePlot
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -83,6 +84,17 @@ fun TestSampleComposable() {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
                     style = BarPlotStyle.SPREAD)
+            }
+        }
+
+        item {
+            Card(modifier = Modifier
+                .fillMaxWidth()
+                .height(160.dp)
+                .padding(horizontal = 16.dp, vertical = 8.dp),
+                elevation = 1.dp) {
+                LinePlot(data,
+                    modifier = Modifier.padding(16.dp))
             }
         }
     })
