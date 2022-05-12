@@ -18,21 +18,17 @@ fun LinePlot(data: FloatArray, modifier: Modifier = Modifier) {
         val maxWidth = size.width
         val maxHeight = size.height
 
-        var xStart = 0f
-        var yStart = maxHeight
-        var xEnd = 0f
-        var yEnd = 0f
-        repeat(data.size) {
-            xEnd = maxWidth * ((it+1f)/data.size)
-            yEnd = maxHeight - (maxHeight * (data[it]/maxData))
+        for (it in 0 until data.size - 1) {
+            val xStart = maxWidth * (it.toFloat() / (data.size - 1))
+            val yStart = maxHeight - (maxHeight * (data[it] / maxData))
+            val xEnd = maxWidth * ((it + 1f) / (data.size - 1))
+            val yEnd = maxHeight - (maxHeight * (data[it + 1] / maxData))
             drawLine(
                 start = Offset(x = xStart, y = yStart),
                 end = Offset(x = xEnd, y = yEnd),
                 color = primaryColor,
                 strokeWidth = 4f
             )
-            xStart = xEnd
-            yStart = yEnd
         }
     }
 }
@@ -40,5 +36,5 @@ fun LinePlot(data: FloatArray, modifier: Modifier = Modifier) {
 @Preview
 @Composable
 fun LinePlotPreview() {
-    LinePlot(data = floatArrayOf(0.2f, 0.5f, 1f, 3f))
+    LinePlot(data = floatArrayOf(1f, 2f, 13f, 4f))
 }
