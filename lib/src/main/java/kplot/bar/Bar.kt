@@ -20,7 +20,7 @@ import androidx.compose.ui.unit.dp
 fun Bar(modifier: Modifier = Modifier) {
     Box(modifier = modifier
         .fillMaxSize()
-        .clip(RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp))
+        .clip(RoundedCornerShape(topStart = 2.dp, topEnd = 2.dp))
         .background(color = MaterialTheme.colors.primary)) {
 
     }
