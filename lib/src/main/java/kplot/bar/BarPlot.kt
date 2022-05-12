@@ -9,6 +9,8 @@ import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import kplot.barplot.BarPlotJustification
 import kplot.barplot.BarPlotStyle
 
@@ -20,8 +22,9 @@ import kplot.barplot.BarPlotStyle
 fun BarPlot(
     data: FloatArray,
     modifier: Modifier = Modifier,
-    barPlotStyle: BarPlotStyle = BarPlotStyle.SPREAD,
-    barPlotJustification: BarPlotJustification = BarPlotJustification.START
+    style: BarPlotStyle = BarPlotStyle.SPREAD,
+    justification: BarPlotJustification = BarPlotJustification.START,
+    separator: Dp = 2.dp
 ) {
     val maxData = remember { data.maxOrNull() ?: 1f }
     Layout(
@@ -46,9 +49,9 @@ fun BarPlot(
             )
         }
 
-        when (barPlotStyle) {
+        when (style) {
             BarPlotStyle.SPREAD -> layoutSpread(constraints, placeables)
-            BarPlotStyle.PACKED -> layoutPacked(constraints, placeables, barPlotJustification)
+            BarPlotStyle.PACKED -> layoutPacked(constraints, placeables, justification, separator)
         }
 
     }
@@ -88,12 +91,13 @@ private fun MeasureScope.layoutSpread(
 private fun MeasureScope.layoutPacked(
     constraints: Constraints,
     placeables: List<Placeable>,
-    justification: BarPlotJustification
+    justification: BarPlotJustification,
+    separator: Dp = 2.dp
 ): MeasureResult {
     return when (justification) {
-        BarPlotJustification.START -> layoutPackedStart(constraints, placeables)
-        BarPlotJustification.CENTER -> layoutPackedCenter(constraints, placeables)
-        BarPlotJustification.END -> layoutPackedEnd(constraints, placeables)
+        BarPlotJustification.START -> layoutPackedStart(constraints, placeables, separator)
+        BarPlotJustification.CENTER -> layoutPackedCenter(constraints, placeables, separator)
+        BarPlotJustification.END -> layoutPackedEnd(constraints, placeables, separator)
     }
 }
 
@@ -104,7 +108,8 @@ private fun MeasureScope.layoutPacked(
  */
 private fun MeasureScope.layoutPackedStart(
     constraints: Constraints,
-    placeables: List<Placeable>
+    placeables: List<Placeable>,
+    separator: Dp = 2.dp
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
         var x = 0
@@ -114,7 +119,7 @@ private fun MeasureScope.layoutPackedStart(
             p.place(x, y)
 
             // move ahead by width of an item and then add a separator
-            x += p.width + (p.width * 0.02).toInt()
+            x += p.width + separator.toPx().toInt()
         }
     }
 }
@@ -126,7 +131,8 @@ private fun MeasureScope.layoutPackedStart(
  */
 private fun MeasureScope.layoutPackedCenter(
     constraints: Constraints,
-    placeables: List<Placeable>
+    placeables: List<Placeable>,
+    separator: Dp = 2.dp
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
         var x = 0
@@ -136,13 +142,13 @@ private fun MeasureScope.layoutPackedCenter(
             if(i == 0) {
                 // find x for first item from center of width
                 x += constraints.maxWidth / 2
-                x -= (placeables.size * (p.width + (p.width * 0.02).toInt())) / 2
+                x -= (placeables.size * (p.width + separator.toPx().toInt())) / 2
             }
 
             p.place(x, y)
 
             // move ahead by width of an item and then add a separator
-            x += p.width + (p.width * 0.02).toInt()
+            x += p.width + separator.toPx().toInt()
         }
     }
 }
@@ -154,7 +160,8 @@ private fun MeasureScope.layoutPackedCenter(
  */
 private fun MeasureScope.layoutPackedEnd(
     constraints: Constraints,
-    placeables: List<Placeable>
+    placeables: List<Placeable>,
+    separator: Dp = 2.dp
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
 
@@ -169,7 +176,7 @@ private fun MeasureScope.layoutPackedEnd(
             // make place for width of an item, place it and then add a separator
             x -= p.width
             p.place(x, y)
-            x -= (p.width * 0.02).toInt()
+            x -= separator.toPx().toInt()
         }
     }
 }
@@ -179,7 +186,7 @@ private fun MeasureScope.layoutPackedEnd(
 fun BarPlotPreview() {
     BarPlot(
         floatArrayOf(1f, 4f, 2f, 5f),
-        barPlotStyle = BarPlotStyle.PACKED,
-        barPlotJustification = BarPlotJustification.CENTER
+        style = BarPlotStyle.PACKED,
+        justification = BarPlotJustification.CENTER
     )
 }

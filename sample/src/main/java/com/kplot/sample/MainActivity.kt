@@ -43,8 +43,8 @@ fun TestSampleComposable() {
             elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    barPlotStyle = BarPlotStyle.PACKED,
-                    barPlotJustification = BarPlotJustification.START)
+                    style = BarPlotStyle.PACKED,
+                    justification = BarPlotJustification.START)
             }
         }
 
@@ -56,8 +56,8 @@ fun TestSampleComposable() {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    barPlotStyle = BarPlotStyle.PACKED,
-                    barPlotJustification = BarPlotJustification.CENTER)
+                    style = BarPlotStyle.PACKED,
+                    justification = BarPlotJustification.CENTER)
             }
         }
 
@@ -69,8 +69,8 @@ fun TestSampleComposable() {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    barPlotStyle = BarPlotStyle.PACKED,
-                    barPlotJustification = BarPlotJustification.END)
+                    style = BarPlotStyle.PACKED,
+                    justification = BarPlotJustification.END)
             }
         }
 
@@ -82,7 +82,7 @@ fun TestSampleComposable() {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    barPlotStyle = BarPlotStyle.SPREAD)
+                    style = BarPlotStyle.SPREAD)
             }
         }
     })
