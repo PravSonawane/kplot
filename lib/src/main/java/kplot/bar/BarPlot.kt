@@ -22,8 +22,8 @@ import kplot.barplot.BarPlotStyle
 fun BarPlot(
     data: FloatArray,
     modifier: Modifier = Modifier,
-    style: BarPlotStyle = BarPlotStyle.SPREAD,
-    justification: BarPlotJustification = BarPlotJustification.START,
+    style: BarPlotStyle = BarPlotStyle.PACKED,
+    justification: BarPlotJustification = BarPlotJustification.CENTER,
     separator: Dp = 2.dp
 ) {
     val maxData = remember { data.maxOrNull() ?: 1f }
