@@ -15,4 +15,10 @@
         android:name="com.kplot.sample.custom.CustomFragment"
         android:label="Custom">
     </fragment>
+
+    <fragment
+        android:id="@+id/bar_fragment"
+        android:name="com.kplot.sample.bar.BarFragment"
+        android:label="Bar">
+    </fragment>
 </navigation>

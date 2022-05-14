@@ -59,61 +59,13 @@ class MainFragment : Fragment() {
 fun TestSampleComposable(viewModel: MainViewModel) {
     Text("Hello kplot sample Composable", color = MaterialTheme.colors.onBackground)
     Button(onClick = { viewModel.navigateTo(Destination.CUSTOM) }) {
-        Text(text = "Navigate to custom")
+        Text(text = "Custom Chart")
+    }
+    Button(onClick = { viewModel.navigateTo(Destination.BAR) }) {
+        Text(text = "Bar Chart")
     }
     val data = floatArrayOf(1f, 4f, 2f, 3f)
     LazyColumn(content = {
-        item {
-            Card(modifier = Modifier
-                .fillMaxWidth()
-                .height(160.dp)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 1.dp) {
-                BarPlot(data,
-                    modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.START)
-            }
-        }
-
-        item {
-            Card(modifier = Modifier
-                .fillMaxWidth()
-                .height(160.dp)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 1.dp) {
-                BarPlot(data,
-                    modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.CENTER)
-            }
-        }
-
-        item {
-            Card(modifier = Modifier
-                .fillMaxWidth()
-                .height(160.dp)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 1.dp) {
-                BarPlot(data,
-                    modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.END)
-            }
-        }
-
-        item {
-            Card(modifier = Modifier
-                .fillMaxWidth()
-                .height(160.dp)
-                .padding(horizontal = 16.dp, vertical = 8.dp),
-                elevation = 1.dp) {
-                BarPlot(data,
-                    modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.SPREAD)
-            }
-        }
-
         item {
             Card(modifier = Modifier
                 .fillMaxWidth()
