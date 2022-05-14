@@ -1,4 +1,4 @@
-package com.kplot.sample.main
+package com.kplot.sample.custom
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -7,8 +7,7 @@ import com.kplot.sample.livedata.LiveDataWrapper
 import com.kplot.sample.navigation.Destination
 import com.kplot.sample.navigation.NavigationEvent
 
-class MainViewModel : ViewModel() {
-
+class CustomViewModel : ViewModel() {
     private val _navigateTo = MutableLiveData<LiveDataWrapper<NavigationEvent>>()
     val navigateTo: LiveData<LiveDataWrapper<NavigationEvent>>
         get() = _navigateTo

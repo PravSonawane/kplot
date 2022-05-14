@@ -9,4 +9,10 @@
         android:name="com.kplot.sample.main.MainFragment"
         android:label="Main">
     </fragment>
+
+    <fragment
+        android:id="@+id/custom_fragment"
+        android:name="com.kplot.sample.custom.CustomFragment"
+        android:label="Custom">
+    </fragment>
 </navigation>
