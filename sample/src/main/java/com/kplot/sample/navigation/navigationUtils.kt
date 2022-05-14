@@ -19,6 +19,9 @@ fun Fragment.navigate(to: LiveDataWrapper<NavigationEvent>) {
             Destination.BAR -> {
                 findNavController().navigate(R.id.bar_fragment)
             }
+            Destination.LINE -> {
+                findNavController().navigate(R.id.line_fragment)
+            }
         }
     } else if (content is NavigationEvent.OnBack) {
         findNavController().popBackStack()

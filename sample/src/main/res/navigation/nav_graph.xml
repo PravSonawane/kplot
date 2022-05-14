@@ -21,4 +21,10 @@
         android:name="com.kplot.sample.bar.BarFragment"
         android:label="Bar">
     </fragment>
+
+    <fragment
+        android:id="@+id/line_fragment"
+        android:name="com.kplot.sample.line.LineFragment"
+        android:label="Line">
+    </fragment>
 </navigation>
