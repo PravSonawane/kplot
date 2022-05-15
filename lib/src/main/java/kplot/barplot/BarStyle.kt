@@ -5,7 +5,7 @@ import kplot.bar.BarPlot
 /**
  * Style used to layout bars in a [BarPlot]
  */
-enum class BarPlotStyle {
+enum class BarStyle {
     /** Bars are packed close to one another */
     PACKED,
 

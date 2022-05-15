@@ -4,9 +4,9 @@ import kplot.bar.BarPlot
 
 /**
  * Justification used to layout bars in a [BarPlot]. Justification is ignored if the [BarPlot]
- * uses [BarPlotStyle.SPREAD].
+ * uses [BarStyle.SPREAD].
  */
-enum class BarPlotJustification {
+enum class Justification {
 
     /** Bars are aligned to the start of the [BarPlot] */
     START,

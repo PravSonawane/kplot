@@ -12,8 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kplot.bar.BarPlot
-import kplot.barplot.BarPlotJustification
-import kplot.barplot.BarPlotStyle
+import kplot.barplot.Justification
+import kplot.barplot.BarStyle
+import kplot.config.*
 import kplot.data.dataSetOf
 
 @Composable
@@ -33,8 +34,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.START)
+                    config = config().bar().justify(Justification.START).style(BarStyle.PACKED))
             }
         }
 
@@ -46,8 +46,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.CENTER)
+                    config = barConfig().justify(Justification.CENTER).style(BarStyle.PACKED))
             }
         }
 
@@ -59,8 +58,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.PACKED,
-                    justification = BarPlotJustification.END)
+                    config = barConfig().justify(Justification.END).style(BarStyle.PACKED))
             }
         }
 
@@ -72,7 +70,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    style = BarPlotStyle.SPREAD)
+                    config = barConfig().style(BarStyle.SPREAD))
             }
         }
     })

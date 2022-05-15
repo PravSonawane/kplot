@@ -11,8 +11,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import kplot.barplot.BarPlotJustification
-import kplot.barplot.BarPlotStyle
+import kplot.barplot.Justification
+import kplot.barplot.BarStyle
+import kplot.config.*
 import kplot.data.dataSetOf
 
 /**
@@ -23,10 +24,7 @@ import kplot.data.dataSetOf
 fun BarPlot(
     data: FloatArray,
     modifier: Modifier = Modifier,
-    style: BarPlotStyle = BarPlotStyle.PACKED,
-    justification: BarPlotJustification = BarPlotJustification.CENTER,
-    barWidth: Dp = 20.dp,
-    separator: Dp = 2.dp
+    config: BarChartConfiguration
 ) {
     val maxData = remember { data.maxOrNull() ?: 1f }
     Layout(
@@ -41,17 +39,18 @@ fun BarPlot(
         val placeables = measurables.mapIndexed { i, m ->
             m.measure(
                 Constraints(
-                    minWidth = barWidth.toPx().toInt(),
-                    maxWidth = barWidth.toPx().toInt(),
+                    minWidth = config.barWidth.toPx().toInt(),
+                    maxWidth = config.barWidth.toPx().toInt(),
                     minHeight = (constraints.maxHeight * (data[i] / maxData)).toInt(),
                     maxHeight = (constraints.maxHeight * (data[i] / maxData)).toInt()
                 )
             )
         }
 
-        when (style) {
-            BarPlotStyle.SPREAD -> layoutSpread(constraints, placeables)
-            BarPlotStyle.PACKED -> layoutPacked(constraints, placeables, justification, separator)
+        when (config.style) {
+            BarStyle.SPREAD -> layoutSpread(constraints, placeables)
+            BarStyle.PACKED -> layoutPacked(constraints, placeables, config.justification,
+                config.barSeparatorWidth)
         }
 
     }
@@ -86,18 +85,18 @@ private fun MeasureScope.layoutSpread(
  * Lays out the bars in a 'packed' manner. Bars are placed close to one another.
  * @param constraints constraints for layout
  * @param placeables items to be placed
- * @param justification specifies where the bars should be placed. See [BarPlotJustification]
+ * @param justification specifies where the bars should be placed. See [Justification]
  */
 private fun MeasureScope.layoutPacked(
     constraints: Constraints,
     placeables: List<Placeable>,
-    justification: BarPlotJustification,
+    justification: Justification,
     separator: Dp = 2.dp
 ): MeasureResult {
     return when (justification) {
-        BarPlotJustification.START -> layoutPackedStart(constraints, placeables, separator)
-        BarPlotJustification.CENTER -> layoutPackedCenter(constraints, placeables, separator)
-        BarPlotJustification.END -> layoutPackedEnd(constraints, placeables, separator)
+        Justification.START -> layoutPackedStart(constraints, placeables, separator)
+        Justification.CENTER -> layoutPackedCenter(constraints, placeables, separator)
+        Justification.END -> layoutPackedEnd(constraints, placeables, separator)
     }
 }
 
@@ -186,7 +185,6 @@ private fun MeasureScope.layoutPackedEnd(
 fun BarPlotPreview() {
     BarPlot(
         dataSetOf(1, 4, 2, 5),
-        style = BarPlotStyle.PACKED,
-        justification = BarPlotJustification.CENTER
+        config = barConfig().justify(Justification.CENTER).style(BarStyle.PACKED)
     )
 }
