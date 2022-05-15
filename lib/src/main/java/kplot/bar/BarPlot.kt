@@ -24,6 +24,7 @@ fun BarPlot(
     modifier: Modifier = Modifier,
     style: BarPlotStyle = BarPlotStyle.PACKED,
     justification: BarPlotJustification = BarPlotJustification.CENTER,
+    barWidth: Dp = 20.dp,
     separator: Dp = 2.dp
 ) {
     val maxData = remember { data.maxOrNull() ?: 1f }
@@ -36,13 +37,11 @@ fun BarPlot(
         }
     ) { measurables, constraints ->
 
-        val barMinThicknessPercentage = 0.125
-        val barMaxThicknessPercentage = 0.15
         val placeables = measurables.mapIndexed { i, m ->
             m.measure(
                 Constraints(
-                    minWidth = (constraints.minWidth * barMinThicknessPercentage).toInt(),
-                    maxWidth = (constraints.maxWidth * barMaxThicknessPercentage).toInt(),
+                    minWidth = barWidth.toPx().toInt(),
+                    maxWidth = barWidth.toPx().toInt(),
                     minHeight = (constraints.maxHeight * (data[i] / maxData)).toInt(),
                     maxHeight = (constraints.maxHeight * (data[i] / maxData)).toInt()
                 )
