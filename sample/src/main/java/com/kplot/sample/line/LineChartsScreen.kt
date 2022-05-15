@@ -11,6 +11,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kplot.data.dataSetOf
 import kplot.line.LinePlot
 
 @Composable
@@ -20,7 +21,7 @@ fun LineChartsScreen(viewModel: LineViewModel) {
         viewModel.onBack()
     }
 
-    val data = floatArrayOf(1f, 4f, 2f, 3f)
+    val data = dataSetOf(1, 4, 2, 5)
     LazyColumn(content = {
         item {
             Card(modifier = Modifier

@@ -14,6 +14,7 @@ import androidx.compose.ui.unit.dp
 import kplot.bar.BarPlot
 import kplot.barplot.BarPlotJustification
 import kplot.barplot.BarPlotStyle
+import kplot.data.dataSetOf
 
 @Composable
 fun BarChartsScreen(viewModel: BarViewModel) {
@@ -22,7 +23,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
         viewModel.onBack()
     }
 
-    val data = floatArrayOf(1f, 4f, 2f, 3f)
+    val data = dataSetOf(1, 4, 2, 5)
     LazyColumn(content = {
         item {
             Card(modifier = Modifier

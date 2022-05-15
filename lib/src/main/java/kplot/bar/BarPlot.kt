@@ -13,6 +13,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import kplot.barplot.BarPlotJustification
 import kplot.barplot.BarPlotStyle
+import kplot.data.dataSetOf
 
 /**
  * A compose function that plots [Bar]s
@@ -184,7 +185,7 @@ private fun MeasureScope.layoutPackedEnd(
 @Composable
 fun BarPlotPreview() {
     BarPlot(
-        floatArrayOf(1f, 4f, 2f, 5f),
+        dataSetOf(1, 4, 2, 5),
         style = BarPlotStyle.PACKED,
         justification = BarPlotJustification.CENTER
     )
