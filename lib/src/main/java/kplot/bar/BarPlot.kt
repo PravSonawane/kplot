@@ -24,7 +24,7 @@ import kplot.data.dataSetOf
 fun BarPlot(
     data: FloatArray,
     modifier: Modifier = Modifier,
-    config: BarChartConfiguration
+    config: BarChartConfig = barChartConfig()
 ) {
     val maxData = remember { data.maxOrNull() ?: 1f }
     Layout(
@@ -185,6 +185,6 @@ private fun MeasureScope.layoutPackedEnd(
 fun BarPlotPreview() {
     BarPlot(
         dataSetOf(1, 4, 2, 5),
-        config = barConfig().justify(Justification.CENTER).style(BarStyle.PACKED)
+        config = barChartConfig().justify(Justification.CENTER).style(BarStyle.PACKED)
     )
 }

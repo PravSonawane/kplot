@@ -4,22 +4,22 @@ import androidx.compose.ui.unit.Dp
 import kplot.barplot.Justification
 import kplot.barplot.BarStyle
 
-fun barConfig(): BarChartConfiguration {
-    return BarChartConfiguration()
+fun barChartConfig(): BarChartConfig {
+    return BarChartConfig()
 }
 
-fun BarChartConfiguration.justify(justification: Justification): BarChartConfiguration {
+fun BarChartConfig.justify(justification: Justification): BarChartConfig {
     return copy(justification = justification)
 }
 
-fun BarChartConfiguration.style(style: BarStyle): BarChartConfiguration {
+fun BarChartConfig.style(style: BarStyle): BarChartConfig {
     return copy(style = style)
 }
 
-fun BarChartConfiguration.barWidth(width: Dp): BarChartConfiguration {
+fun BarChartConfig.barWidth(width: Dp): BarChartConfig {
     return copy(barWidth = width)
 }
 
-fun BarChartConfiguration.barSeparatorWidth(width: Dp): BarChartConfiguration {
+fun BarChartConfig.barSeparatorWidth(width: Dp): BarChartConfig {
     return copy(barSeparatorWidth = width)
 }

@@ -34,7 +34,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    config = config().bar().justify(Justification.START).style(BarStyle.PACKED))
+                    config = config().barChart().justify(Justification.START).style(BarStyle.PACKED))
             }
         }
 
@@ -46,7 +46,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    config = barConfig().justify(Justification.CENTER).style(BarStyle.PACKED))
+                    config = barChartConfig().justify(Justification.CENTER).style(BarStyle.PACKED))
             }
         }
 
@@ -58,7 +58,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    config = barConfig().justify(Justification.END).style(BarStyle.PACKED))
+                    config = barChartConfig().justify(Justification.END).style(BarStyle.PACKED))
             }
         }
 
@@ -70,7 +70,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    config = barConfig().style(BarStyle.SPREAD))
+                    config = barChartConfig().style(BarStyle.SPREAD))
             }
         }
     })

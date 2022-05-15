@@ -5,7 +5,7 @@ fun config(): DefaultConfiguration {
     return DefaultConfiguration()
 }
 
-fun DefaultConfiguration.bar(): BarChartConfiguration {
-    return BarChartConfiguration()
+fun DefaultConfiguration.barChart(): BarChartConfig {
+    return BarChartConfig()
 }
 
