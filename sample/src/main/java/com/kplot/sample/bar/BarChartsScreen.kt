@@ -12,9 +12,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kplot.bar.BarPlot
-import kplot.barplot.Justification
 import kplot.barplot.BarStyle
-import kplot.config.*
+import kplot.barplot.Justification
+import kplot.config.barChartConfig
+import kplot.config.justify
+import kplot.config.style
 import kplot.data.dataSetOf
 
 @Composable
@@ -34,7 +36,7 @@ fun BarChartsScreen(viewModel: BarViewModel) {
                 elevation = 1.dp) {
                 BarPlot(data,
                     modifier = Modifier.padding(16.dp),
-                    config = config().barChart().justify(Justification.START).style(BarStyle.PACKED))
+                    config = barChartConfig().justify(Justification.START).style(BarStyle.PACKED))
             }
         }
 
