@@ -9,11 +9,13 @@ import androidx.compose.ui.layout.MeasureScope
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Constraints
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
-import kplot.barplot.Justification
 import kplot.barplot.BarStyle
-import kplot.config.*
+import kplot.barplot.Justification
+import kplot.config.BarChartConfig
+import kplot.config.barChartConfig
+import kplot.config.justify
+import kplot.config.style
+import kplot.data.DataSet
 import kplot.data.dataSetOf
 
 /**
@@ -22,15 +24,15 @@ import kplot.data.dataSetOf
 @Suppress("MagicNumber")
 @Composable
 fun BarPlot(
-    data: FloatArray,
+    dataSet: DataSet,
     modifier: Modifier = Modifier,
     config: BarChartConfig = barChartConfig()
 ) {
-    val maxData = remember { data.maxOrNull() ?: 1f }
+    val maxData = remember { dataSet.values.maxOrNull() ?: 1f }
     Layout(
         modifier = modifier,
         content = {
-            repeat(data.size) {
+            repeat(dataSet.values.size) {
                 Bar()
             }
         }
@@ -41,16 +43,15 @@ fun BarPlot(
                 Constraints(
                     minWidth = config.barWidth.toPx().toInt(),
                     maxWidth = config.barWidth.toPx().toInt(),
-                    minHeight = (constraints.maxHeight * (data[i] / maxData)).toInt(),
-                    maxHeight = (constraints.maxHeight * (data[i] / maxData)).toInt()
+                    minHeight = (constraints.maxHeight * (dataSet.values[i] / maxData)).toInt(),
+                    maxHeight = (constraints.maxHeight * (dataSet.values[i] / maxData)).toInt()
                 )
             )
         }
 
         when (config.style) {
             BarStyle.SPREAD -> layoutSpread(constraints, placeables)
-            BarStyle.PACKED -> layoutPacked(constraints, placeables, config.justification,
-                config.barSeparatorWidth)
+            BarStyle.PACKED -> layoutPacked(constraints, placeables, config)
         }
 
     }
@@ -58,8 +59,6 @@ fun BarPlot(
 
 /**
  * Lays out the bars in a 'spread' manner occupying all the available width. Bars are placed equidistant from one another.
- * @param constraints constraints for layout
- * @param placeables items to be placed
  */
 private fun MeasureScope.layoutSpread(
     constraints: Constraints,
@@ -83,32 +82,26 @@ private fun MeasureScope.layoutSpread(
 
 /**
  * Lays out the bars in a 'packed' manner. Bars are placed close to one another.
- * @param constraints constraints for layout
- * @param placeables items to be placed
- * @param justification specifies where the bars should be placed. See [Justification]
  */
 private fun MeasureScope.layoutPacked(
     constraints: Constraints,
     placeables: List<Placeable>,
-    justification: Justification,
-    separator: Dp = 2.dp
+    config: BarChartConfig
 ): MeasureResult {
-    return when (justification) {
-        Justification.START -> layoutPackedStart(constraints, placeables, separator)
-        Justification.CENTER -> layoutPackedCenter(constraints, placeables, separator)
-        Justification.END -> layoutPackedEnd(constraints, placeables, separator)
+    return when (config.justification) {
+        Justification.START -> layoutPackedStart(constraints, placeables, config)
+        Justification.CENTER -> layoutPackedCenter(constraints, placeables, config)
+        Justification.END -> layoutPackedEnd(constraints, placeables, config)
     }
 }
 
 /**
  * Bars are placed from the start of the available width.
- * @param constraints constraints for layout
- * @param placeables items to be placed
  */
 private fun MeasureScope.layoutPackedStart(
     constraints: Constraints,
     placeables: List<Placeable>,
-    separator: Dp = 2.dp
+    config: BarChartConfig
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
         var x = 0
@@ -118,20 +111,18 @@ private fun MeasureScope.layoutPackedStart(
             p.place(x, y)
 
             // move ahead by width of an item and then add a separator
-            x += p.width + separator.toPx().toInt()
+            x += p.width + config.barSeparatorWidth.toPx().toInt()
         }
     }
 }
 
 /**
  * Bars are placed in the center of the available width.
- * @param constraints constraints for layout
- * @param placeables items to be placed
  */
 private fun MeasureScope.layoutPackedCenter(
     constraints: Constraints,
     placeables: List<Placeable>,
-    separator: Dp = 2.dp
+    config: BarChartConfig
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
         var x = 0
@@ -141,26 +132,24 @@ private fun MeasureScope.layoutPackedCenter(
             if(i == 0) {
                 // find x for first item from center of width
                 x += constraints.maxWidth / 2
-                x -= (placeables.size * (p.width + separator.toPx().toInt())) / 2
+                x -= (placeables.size * (p.width + config.barSeparatorWidth.toPx().toInt())) / 2
             }
 
             p.place(x, y)
 
             // move ahead by width of an item and then add a separator
-            x += p.width + separator.toPx().toInt()
+            x += p.width + config.barSeparatorWidth.toPx().toInt()
         }
     }
 }
 
 /**
  * Bars are placed at the end of the available width.
- * @param constraints constraints for layout
- * @param placeables items to be placed
  */
 private fun MeasureScope.layoutPackedEnd(
     constraints: Constraints,
     placeables: List<Placeable>,
-    separator: Dp = 2.dp
+    config: BarChartConfig
 ): MeasureResult {
     return layout(constraints.maxWidth, constraints.maxHeight) {
 
@@ -175,7 +164,7 @@ private fun MeasureScope.layoutPackedEnd(
             // make place for width of an item, place it and then add a separator
             x -= p.width
             p.place(x, y)
-            x -= separator.toPx().toInt()
+            x -= config.barSeparatorWidth.toPx().toInt()
         }
     }
 }
