@@ -29,6 +29,9 @@ fun BarPlot(
     config: BarChartConfig = barChartConfig()
 ) {
     val maxData = remember { dataSet.values.maxOrNull() ?: 1f }
+    val minData = remember { dataSet.values.maxOrNull() ?: 0f }
+    require(minData >= 0) { "Using BarPlot for non-positive values is not supported"}
+
     Layout(
         modifier = modifier,
         content = {
