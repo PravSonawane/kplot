@@ -2,15 +2,13 @@ package kplot.line
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import kplot.config.LineChartConfig
+import kplot.config.lineChartConfig
 import kplot.data.DataSet
 import kplot.data.dataSetOf
 
@@ -18,8 +16,7 @@ import kplot.data.dataSetOf
 fun LinePlot(
     dataSet: DataSet,
     modifier: Modifier = Modifier,
-    color: Color = MaterialTheme.colors.primary,
-    width: Dp = 2.dp
+    config: LineChartConfig = lineChartConfig()
 ) {
     val maxData = remember { dataSet.values.maxOrNull() ?: 1f }
 
@@ -38,15 +35,15 @@ fun LinePlot(
             drawLine(
                 start = start,
                 end = end,
-                color = color,
-                strokeWidth = width.toPx()
+                color = config.color,
+                strokeWidth = config.strokeWidth.toPx()
             )
 
             // add circles to smooth off line ends
             if(it == 0) {
-                drawCircle(color = color, center = start, radius = width.toPx() / 2)
+                drawCircle(color = config.color, center = start, radius = config.strokeWidth.toPx() / 2)
             }
-            drawCircle(color = color, center = end, radius = width.toPx() / 2)
+            drawCircle(color = config.color, center = end, radius = config.strokeWidth.toPx() / 2)
 
         }
     }

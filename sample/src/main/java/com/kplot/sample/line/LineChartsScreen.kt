@@ -11,6 +11,8 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import kplot.config.color
+import kplot.config.lineChartConfig
 import kplot.data.dataSetOf
 import kplot.line.LinePlot
 
@@ -30,7 +32,8 @@ fun LineChartsScreen(viewModel: LineViewModel) {
                 .padding(horizontal = 16.dp, vertical = 8.dp),
                 elevation = 1.dp) {
                 LinePlot(data,
-                    modifier = Modifier.padding(16.dp))
+                    modifier = Modifier.padding(16.dp),
+                config = lineChartConfig().color(MaterialTheme.colors.primary))
             }
         }
     })

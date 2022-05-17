@@ -9,3 +9,7 @@ fun DefaultConfiguration.barChart(): BarChartConfig {
     return BarChartConfig()
 }
 
+fun DefaultConfiguration.lineChart(): LineChartConfig {
+    return LineChartConfig()
+}
+
